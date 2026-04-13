@@ -1,0 +1,6 @@
+.scroll-container{
+    width: 600px;
+    height: 800px;
+    background-color: white;
+    overflow-y: scroll;
+}

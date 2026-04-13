@@ -3,7 +3,9 @@ import './style.css'
 
 function InfiniteScroll() {
   return (
-    <div>InfiniteScroll</div>
+    <div className='scroll-container'>
+      container
+    </div>
   )
 }
 
