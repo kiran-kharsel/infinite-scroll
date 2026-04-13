@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import './style.css'
 
+
+const THRESHOLD = 20;
 function InfiniteScroll() {
-  const [data, setData] = useState([... new Array(40)])
+  const [data, setData] = useState([...new Array(40)])
 
 
   function loadMore(){
-
+    setTimeout(() => {
+      setData(prev => [...prev, ...new Array(10)])
+    }, 3000);
   }
 
   function handleScroll(e){
@@ -15,7 +19,11 @@ function InfiniteScroll() {
     const scrollHeight = e.target.scrollHeight;
     const clientHeight = e.target.clientHeight;
 
-    console.log(scrollTop)
+    const remainingScroll = scrollHeight - ( scrollTop + clientHeight)
+
+    if(remainingScroll < THRESHOLD){
+      loadMore()
+    }
   }
 
   return (
