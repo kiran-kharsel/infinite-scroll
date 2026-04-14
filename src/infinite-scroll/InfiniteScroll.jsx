@@ -1,48 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 
-
-const THRESHOLD = 20;
+import Post from './post/Post';
 
 
 function InfiniteScroll() {
-  const [data, setData] = useState([...new Array(40)])
+  const [data, setData] = useState()
   const [loading, setLoading] = useState(false)
 
 
-  function loadMore(){
-    setLoading(true)
-    setTimeout(() => {
-      setData(prev => [...prev, ...new Array(10)])
-      setLoading(false)
-    }, 3000);
-  }
-
-  function handleScroll(e){
-    const scrollTop = e.target.scrollTop;
-    const scrollHeight = e.target.scrollHeight;
-    const clientHeight = e.target.clientHeight;
-
-    const remainingScroll = scrollHeight - ( scrollTop + clientHeight)
-
-    if(remainingScroll < THRESHOLD && !loading){
-      loadMore()
-    }
-  }
+  useEffect(()=>{
+    fetch('https://picsum.photos/v2/list?page=1&limit=3')
+    .then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      console.log(data)
+      setData(prev => [...prev, ...data])
+    })
+  },[])
 
   return (
-    <div onScroll={handleScroll} className='scroll-container'>
-      {
-        data.map((row, index) => {
-          return(
-            <div className='row-data' key={index}>{index + 1}</div>
-          )
-        })
-      }
-
-      {
-        loading && <div>loading...</div>
-      }
+    <div className='scroll-container'>
+      <Post data={data}/>
     </div>
   )
 }
