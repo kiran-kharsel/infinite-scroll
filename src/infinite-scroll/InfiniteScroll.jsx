@@ -5,7 +5,7 @@ import Post from './post/Post';
 
 
 function InfiniteScroll() {
-  const [data, setData] = useState()
+  const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
 
 

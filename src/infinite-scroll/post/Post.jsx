@@ -1,8 +1,18 @@
 import React from 'react'
 
-function Post() {
+function Post({data}) {
   return (
-    <div>Post</div>
+    <div>
+        {
+            data.map((item) => {
+                return (
+                    <div key={item.id}>
+                        <img src={item.download_url} alt='post-image' />
+                    </div>
+                )
+            })
+        }
+    </div>
   )
 }
 
