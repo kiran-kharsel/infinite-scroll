@@ -50,7 +50,7 @@ function InfiniteScroll() {
   }, [data, loading])
 
   return (
-    <div className='scroll-container'>
+    <div className='post-container'>
       {
         data.map((item, index) => {
           return (
