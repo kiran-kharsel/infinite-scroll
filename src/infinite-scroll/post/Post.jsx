@@ -1,13 +1,14 @@
 import React from 'react'
+import './style.css'
 
 function Post({data}) {
   return (
-    <div>
+    <div className='post-container'>
         {
             data.map((item) => {
                 return (
-                    <div key={item.id}>
-                        <img src={item.download_url} alt='post-image' />
+                    <div className='post' key={item.id}>
+                        <img className='post-image' src={item.download_url} alt='post-image' />
                     </div>
                 )
             })

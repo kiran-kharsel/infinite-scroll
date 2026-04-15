@@ -10,13 +10,12 @@ function InfiniteScroll() {
 
 
   useEffect(()=>{
-    fetch('https://picsum.photos/v2/list?page=1&limit=3')
+    fetch('https://picsum.photos/v2/list?page=1&limit=4')
     .then((res) => {
       return res.json()
     })
-    .then((data) => {
-      console.log(data)
-      setData(prev => [...prev, ...data])
+    .then((fetchedData) => {
+      setData(prev => [...prev, ...fetchedData])
     })
   },[])
 
